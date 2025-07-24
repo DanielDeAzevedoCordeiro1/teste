@@ -19,9 +19,19 @@ trait Dancar {
     fn dancar(&self) -> String;
 }
 
+trait Correr {
+    fn correr(&self) -> String;
+}
+
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
+    }
+}
+
+impl Correr for Pessoa {
+    fn correr(&self) -> String {
+        return format!("{} esta correndo", self.name);
     }
 }
 
@@ -32,4 +42,5 @@ fn main(){
     let pessoa = Pessoa::new("Daniel".to_string(), 23);
     pessoa.to_string();
     print!("{}",pessoa.dancar());
+    print!("{}",pessoa.correr());
 }
