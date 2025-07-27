@@ -27,9 +27,19 @@ trait Saltar {
     fn saltar(&self) -> String;
 }
 
+trait FazerBarulho {
+    fn fazer_barulho(&self) -> String;
+}
+
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
+    }
+}
+
+impl FazerBarulho for Pessoa {
+    fn fazer_barulho(&self) -> String {
+        return format!("{} esta fazendo barulho", self.name);
     }
 }
 
@@ -54,4 +64,5 @@ fn main(){
     print!("{}",pessoa.dancar());
     print!("{}",pessoa.correr());
     print!("{}",pessoa.saltar());
+    print!("{}",pessoa.fazer_barulho());
 }
