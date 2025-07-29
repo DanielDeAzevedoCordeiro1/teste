@@ -31,6 +31,11 @@ trait FazerBarulho {
     fn fazer_barulho(&self) -> String;
 }
 
+trait AbrirDireitorio {
+    fn abrir_diretorio(&self) -> String;
+    
+}
+
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
@@ -40,6 +45,12 @@ impl Dancar for Pessoa {
 impl FazerBarulho for Pessoa {
     fn fazer_barulho(&self) -> String {
         return format!("{} esta fazendo barulho", self.name);
+    }
+}
+
+impl AbrirDireitorio for Pessoa {
+    fn abrir_diretorio(&self) -> String {
+        return format!("{} esta abrindo o diretorio", self.name);
     }
 }
 
@@ -65,4 +76,5 @@ fn main(){
     print!("{}",pessoa.correr());
     print!("{}",pessoa.saltar());
     print!("{}",pessoa.fazer_barulho());
+    print!("{}",pessoa.abrir_diretorio());
 }
