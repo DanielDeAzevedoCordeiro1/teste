@@ -27,6 +27,11 @@ trait Saltar {
     fn saltar(&self) -> String;
 }
 
+trait ToString {
+    fn to_string(&self);
+    
+}
+
 trait FazerBarulho {
     fn fazer_barulho(&self) -> String;
 }
@@ -60,6 +65,12 @@ impl Saltar for Pessoa {
     }
 }
 
+impl ToString for Pessoa {
+    fn to_string(&self) {
+        println!("Nome: {}   Idade: {}", self.name, self.age);
+    }
+}
+
 impl Correr for Pessoa {
     fn correr(&self) -> String {
         return format!("{} esta correndo", self.name);
@@ -77,4 +88,7 @@ fn main(){
     print!("{}",pessoa.saltar());
     print!("{}",pessoa.fazer_barulho());
     print!("{}",pessoa.abrir_diretorio());
+    println!();
+    let pessoa2 = Pessoa::new("Maria".to_string(), 30);
+    pessoa2.to_string();
 }
