@@ -32,6 +32,10 @@ trait ToString {
     
 }
 
+trait Pagar {
+    fn pagar(&self) -> String;
+}
+
 trait FazerBarulho {
     fn fazer_barulho(&self) -> String;
 }
@@ -45,6 +49,13 @@ impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
     }
+}
+
+impl Pagar for Pessoa {
+    fn pagar(&self) -> String {
+        return format!("{} esta pagando", self.name);
+    }
+    
 }
 
 impl FazerBarulho for Pessoa {
@@ -91,4 +102,5 @@ fn main(){
     println!();
     let pessoa2 = Pessoa::new("Maria".to_string(), 30);
     pessoa2.to_string();
+    print!("{}",pessoa2.pagar());
 }
