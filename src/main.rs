@@ -45,6 +45,10 @@ trait AbrirDireitorio {
     
 }
 
+trait Trabalhar {
+    fn trabalhar(&self, horas: u32) -> String;
+}
+
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
@@ -54,6 +58,13 @@ impl Dancar for Pessoa {
 impl Pagar for Pessoa {
     fn pagar(&self) -> String {
         return format!("{} esta pagando", self.name);
+    }
+    
+}
+
+impl Trabalhar for Pessoa {
+    fn trabalhar(&self, horas: u32) -> String {
+        return format!("{} esta trabalhando por {} horas", self.name, horas);
     }
     
 }
@@ -103,4 +114,5 @@ fn main(){
     let pessoa2 = Pessoa::new("Maria".to_string(), 30);
     pessoa2.to_string();
     print!("{}",pessoa2.pagar());
+    print!("{}",pessoa2.trabalhar(8));
 }
