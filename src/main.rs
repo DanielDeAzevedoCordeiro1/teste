@@ -45,6 +45,10 @@ trait AbrirDireitorio {
     
 }
 
+trait Jogar {
+    fn jogar(&self, jogo: &str) -> String;
+}
+
 trait Trabalhar {
     fn trabalhar(&self, horas: u32) -> String;
 }
@@ -52,6 +56,12 @@ trait Trabalhar {
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
+    }
+}
+
+impl Jogar for Pessoa {
+    fn jogar(&self, jogo: &str) -> String {
+        return format!("{} esta jogando {}", self.name, jogo);
     }
 }
 
@@ -115,4 +125,5 @@ fn main(){
     pessoa2.to_string();
     print!("{}",pessoa2.pagar());
     print!("{}",pessoa2.trabalhar(8));
+    print!("{}",pessoa2.jogar("Futebol"));
 }
