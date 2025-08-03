@@ -49,9 +49,10 @@ trait Jogar {
     fn jogar(&self, jogo: &str) -> String;
 }
 
-trait Trabalhar {
-    fn trabalhar(&self, horas: u32) -> String;
+trait FazerPedido {
+    fn fazer_pedido(&self, pedido: &str) -> String;
 }
+
 
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
@@ -72,11 +73,10 @@ impl Pagar for Pessoa {
     
 }
 
-impl Trabalhar for Pessoa {
-    fn trabalhar(&self, horas: u32) -> String {
-        return format!("{} esta trabalhando por {} horas", self.name, horas);
+impl FazerPedido for Pessoa {
+    fn fazer_pedido(&self, pedido: &str) -> String {
+        return format!("{} esta fazendo o pedido de {}", self.name, pedido);
     }
-    
 }
 
 impl FazerBarulho for Pessoa {
@@ -124,6 +124,6 @@ fn main(){
     let pessoa2 = Pessoa::new("Maria".to_string(), 30);
     pessoa2.to_string();
     print!("{}",pessoa2.pagar());
-    print!("{}",pessoa2.trabalhar(8));
     print!("{}",pessoa2.jogar("Futebol"));
+    print!("{}",pessoa2.fazer_pedido("Pizza"));
 }
