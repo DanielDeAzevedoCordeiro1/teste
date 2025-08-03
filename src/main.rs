@@ -15,12 +15,32 @@ impl Pessoa{
     }
 }
 
+
+trait PessoaTrait {
+    fn new(name: String, age: u8) -> Self;
+    fn to_string(&self);
+}
+
 trait Dancar {
     fn dancar(&self) -> String;
 }
 
 trait Correr {
     fn correr(&self) -> String;
+}
+
+impl PessoaTrait for Pessoa {
+    fn new(name: String, age: u8) -> Self {
+        Pessoa::new(name, age)
+    }
+
+    fn to_string(&self) {
+        self.to_string();
+    }
+}
+
+trait Cantar {
+    fn cantar(&self, musica: &str) -> String;
 }
 
 trait Saltar {
@@ -30,6 +50,12 @@ trait Saltar {
 trait ToString {
     fn to_string(&self);
     
+}
+
+impl Cantar for Pessoa {
+    fn cantar(&self, musica: &str) -> String {
+        return format!("{} esta cantando {}", self.name, musica);
+    }
 }
 
 trait Pagar {
@@ -126,4 +152,5 @@ fn main(){
     print!("{}",pessoa2.pagar());
     print!("{}",pessoa2.jogar("Futebol"));
     print!("{}",pessoa2.fazer_pedido("Pizza"));
+    print!("{}",pessoa2.cantar("Despacito"));
 }
