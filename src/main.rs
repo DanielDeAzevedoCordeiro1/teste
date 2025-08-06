@@ -74,6 +74,9 @@ trait AbrirDireitorio {
 trait Jogar {
     fn jogar(&self, jogo: &str) -> String;
 }
+trait DeletarConta {
+    fn deletar_conta(&self, conta: &str, banco: &str) -> String;
+}
 
 trait Depositar {
     fn depositar(&self, valor: f64, conta: &str, banco: &str) -> String;
@@ -88,6 +91,13 @@ impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
     }
+}
+
+impl DeletarConta for Pessoa {
+    fn deletar_conta(&self, conta: &str, banco: &str) -> String {
+        return format!("{} esta deletando a conta {} do banco {}", self.name, conta, banco);
+    }
+    
 }
 
 impl Depositar for Pessoa {
@@ -165,4 +175,5 @@ fn main(){
     print!("{}",pessoa2.fazer_pedido("Pizza"));
     print!("{}",pessoa2.cantar("Despacito"));
     print!("{}",pessoa2.depositar(1000.0, "12345", "Banco do Brasil"));
+    print!("{}",pessoa2.deletar_conta("12345", "Banco do Brasil"));
 }
