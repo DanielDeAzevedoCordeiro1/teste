@@ -71,6 +71,10 @@ trait AbrirDireitorio {
     
 }
 
+trait criarPasta {
+    fn criar_pasta(&self, nome: &str) -> String;
+}
+
 trait Jogar {
     fn jogar(&self, jogo: &str) -> String;
 }
@@ -111,6 +115,13 @@ impl Jogar for Pessoa {
     fn jogar(&self, jogo: &str) -> String {
         return format!("{} esta jogando {}", self.name, jogo);
     }
+}
+
+impl criarPasta for Pessoa {
+    fn criar_pasta(&self, nome: &str) -> String {
+        return format!("{} esta criando a pasta {}", self.name, nome);
+    }
+    
 }
 
 impl Pagar for Pessoa {
@@ -176,4 +187,5 @@ fn main(){
     print!("{}",pessoa2.cantar("Despacito"));
     print!("{}",pessoa2.depositar(1000.0, "12345", "Banco do Brasil"));
     print!("{}",pessoa2.deletar_conta("12345", "Banco do Brasil"));
+    print!("{}",pessoa2.criar_pasta("Documentos"));
 }
