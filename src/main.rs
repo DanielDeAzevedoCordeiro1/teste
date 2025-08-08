@@ -90,6 +90,11 @@ trait FazerPedido {
     fn fazer_pedido(&self, pedido: &str) -> String;
 }
 
+trait DeletarDiretorio {
+    fn deletar_diretorio(&self, nome: &str) -> String;
+    
+}
+
 
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
@@ -120,6 +125,13 @@ impl Jogar for Pessoa {
 impl criarPasta for Pessoa {
     fn criar_pasta(&self, nome: &str) -> String {
         return format!("{} esta criando a pasta {}", self.name, nome);
+    }
+    
+}
+
+impl DeletarDiretorio for Pessoa {
+    fn deletar_diretorio(&self, nome: &str) -> String {
+        return format!("{} esta deletando o diretorio {}", self.name, nome);
     }
     
 }
@@ -188,4 +200,5 @@ fn main(){
     print!("{}",pessoa2.depositar(1000.0, "12345", "Banco do Brasil"));
     print!("{}",pessoa2.deletar_conta("12345", "Banco do Brasil"));
     print!("{}",pessoa2.criar_pasta("Documentos"));
+    print!("{}",pessoa2.deletar_diretorio("Downloads"));
 }
