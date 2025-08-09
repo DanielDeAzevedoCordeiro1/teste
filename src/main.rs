@@ -86,6 +86,10 @@ trait Depositar {
     fn depositar(&self, valor: f64, conta: &str, banco: &str) -> String;
 }
 
+trait EditarNomeDiretorio {
+    fn editar_nome_diretorio(&self, nome_antigo: &str, nome_novo: &str) -> String;
+}
+
 trait FazerPedido {
     fn fazer_pedido(&self, pedido: &str) -> String;
 }
@@ -114,6 +118,12 @@ impl Depositar for Pessoa {
         return format!("{} esta depositando {} na conta {} do banco {}", self.name, valor, conta, banco);
     }
     
+}
+
+impl EditarNomeDiretorio for Pessoa {
+    fn editar_nome_diretorio(&self, nome_antigo: &str, nome_novo: &str) -> String {
+        return format!("{} esta editando o nome do diretorio de {} para {}", self.name, nome_antigo, nome_novo);
+    }
 }
 
 impl Jogar for Pessoa {
@@ -201,4 +211,5 @@ fn main(){
     print!("{}",pessoa2.deletar_conta("12345", "Banco do Brasil"));
     print!("{}",pessoa2.criar_pasta("Documentos"));
     print!("{}",pessoa2.deletar_diretorio("Downloads"));
+    print!("{}",pessoa2.editar_nome_diretorio("Antigo", "Novo"));
 }
