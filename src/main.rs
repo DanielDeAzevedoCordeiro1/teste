@@ -94,6 +94,10 @@ trait FazerPedido {
     fn fazer_pedido(&self, pedido: &str) -> String;
 }
 
+trait CriarConGoogleDrive {
+    fn criar_con_google_drive(&self, nome: &str) -> String;
+}
+
 trait DeletarDiretorio {
     fn deletar_diretorio(&self, nome: &str) -> String;
     
@@ -111,6 +115,12 @@ impl DeletarConta for Pessoa {
         return format!("{} esta deletando a conta {} do banco {}", self.name, conta, banco);
     }
     
+}
+
+impl CriarConGoogleDrive for Pessoa {
+    fn criar_con_google_drive(&self, nome: &str) -> String {
+        return format!("{} esta criando uma conexao com o Google Drive chamada {}", self.name, nome);
+    }
 }
 
 impl Depositar for Pessoa {
@@ -212,4 +222,5 @@ fn main(){
     print!("{}",pessoa2.criar_pasta("Documentos"));
     print!("{}",pessoa2.deletar_diretorio("Downloads"));
     print!("{}",pessoa2.editar_nome_diretorio("Antigo", "Novo"));
+    print!("{}",pessoa2.criar_con_google_drive("Minha Conexao"));
 }
