@@ -47,6 +47,10 @@ trait Saltar {
     fn saltar(&self) -> String;
 }
 
+trait  LancarEvento {
+    fn lancar_evento(&self, evento: &str) -> String;
+}
+
 trait ToString {
     fn to_string(&self);
     
@@ -107,6 +111,12 @@ trait DeletarDiretorio {
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
+    }
+}
+
+impl LancarEvento for Pessoa {
+    fn lancar_evento(&self, evento: &str) -> String {
+        return format!("{} esta lancando o evento {}", self.name, evento);
     }
 }
 
@@ -223,4 +233,5 @@ fn main(){
     print!("{}",pessoa2.deletar_diretorio("Downloads"));
     print!("{}",pessoa2.editar_nome_diretorio("Antigo", "Novo"));
     print!("{}",pessoa2.criar_con_google_drive("Minha Conexao"));
+    print!("{}",pessoa2.lancar_evento("Festa"));
 }
