@@ -70,6 +70,11 @@ trait FazerBarulho {
     fn fazer_barulho(&self) -> String;
 }
 
+trait FazerCommit {
+    fn fazer_commit(&self, mensagem: &str, branch: &str) -> String;
+
+}
+
 trait AbrirDireitorio {
     fn abrir_diretorio(&self) -> String;
     
@@ -112,6 +117,13 @@ impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
     }
+}
+
+impl FazerCommit for Pessoa {
+    fn fazer_commit(&self, mensagem: &str, branch: &str) -> String {
+        return format!("{} esta fazendo commit na branch {} com a mensagem: {}", self.name, branch, mensagem);
+    }
+    
 }
 
 impl LancarEvento for Pessoa {
@@ -234,4 +246,5 @@ fn main(){
     print!("{}",pessoa2.editar_nome_diretorio("Antigo", "Novo"));
     print!("{}",pessoa2.criar_con_google_drive("Minha Conexao"));
     print!("{}",pessoa2.lancar_evento("Festa"));
+    print!("{}",pessoa2.fazer_commit("Adicionando novas funcionalidades", "main"));
 }
