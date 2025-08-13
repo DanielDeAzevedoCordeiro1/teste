@@ -75,6 +75,10 @@ trait FazerCommit {
 
 }
 
+trait EditarCommit {
+    fn editar_commit(&self, mensagem: &str, branch: &str) -> String;
+}
+
 trait AbrirDireitorio {
     fn abrir_diretorio(&self) -> String;
     
@@ -124,6 +128,12 @@ impl FazerCommit for Pessoa {
         return format!("{} esta fazendo commit na branch {} com a mensagem: {}", self.name, branch, mensagem);
     }
     
+}
+
+impl EditarCommit for Pessoa {
+    fn editar_commit(&self, mensagem: &str, branch: &str) -> String {
+        return format!("{} esta editando o commit na branch {} com a mensagem: {}", self.name, branch, mensagem);
+    }
 }
 
 impl LancarEvento for Pessoa {
@@ -247,4 +257,5 @@ fn main(){
     print!("{}",pessoa2.criar_con_google_drive("Minha Conexao"));
     print!("{}",pessoa2.lancar_evento("Festa"));
     print!("{}",pessoa2.fazer_commit("Adicionando novas funcionalidades", "main"));
+    print!("{}",pessoa2.editar_commit("Corrigindo bugs", "main"));
 }
