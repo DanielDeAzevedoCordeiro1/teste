@@ -116,6 +116,10 @@ trait DeletarDiretorio {
     
 }
 
+trait Merge {
+    fn merge(&self, branch: &str, branch_base: &str) -> String;
+}
+
 
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
@@ -179,6 +183,12 @@ impl criarPasta for Pessoa {
         return format!("{} esta criando a pasta {}", self.name, nome);
     }
     
+}
+
+impl Merge for Pessoa {
+    fn merge(&self, branch: &str, branch_base: &str) -> String {
+        return format!("{} esta fazendo merge da branch {} com a branch base {}", self.name, branch, branch_base);
+    }
 }
 
 impl DeletarDiretorio for Pessoa {
@@ -258,4 +268,5 @@ fn main(){
     print!("{}",pessoa2.lancar_evento("Festa"));
     print!("{}",pessoa2.fazer_commit("Adicionando novas funcionalidades", "main"));
     print!("{}",pessoa2.editar_commit("Corrigindo bugs", "main"));
+    print!("{}",pessoa2.merge("feature", "main"));
 }
