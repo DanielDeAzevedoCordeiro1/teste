@@ -134,6 +134,10 @@ trait Amend {
     fn amend(&self, mensagem: &str, branch: &str) -> String;
 }
 
+trait TrocarBranch {
+    fn trocar_branch(&self, branch: &str, branch_nova: &str) -> String;
+}
+
 impl Amend for Pessoa {
     fn amend(&self, mensagem: &str, branch: &str) -> String {
         return format!("{} esta fazendo amend na branch {} com a mensagem: {}", self.name, branch, mensagem);
@@ -162,6 +166,13 @@ impl Rebase for Pessoa {
 impl FazerCommit for Pessoa {
     fn fazer_commit(&self, mensagem: &str, branch: &str) -> String {
         return format!("{} esta fazendo commit na branch {} com a mensagem: {}", self.name, branch, mensagem);
+    }
+    
+}
+
+impl TrocarBranch for Pessoa {
+    fn trocar_branch(&self, branch: &str, branch_nova: &str) -> String {
+        return format!("{} esta trocando da branch {} para a branch {}", self.name, branch, branch_nova);
     }
     
 }
@@ -312,4 +323,5 @@ fn main(){
     print!("{}",pessoa2.amend("Atualizando commit", "main"));
     print!("{}",pessoa2.cherry_pick("abc123", "main"));
     print!("{}",pessoa2.criar_branch("nova_branch"));
+    print!("{}",pessoa2.trocar_branch("main", "nova_branch"));
 }
