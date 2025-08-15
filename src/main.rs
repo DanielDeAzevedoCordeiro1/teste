@@ -119,7 +119,10 @@ trait DeletarDiretorio {
     fn deletar_diretorio(&self, nome: &str) -> String;
     
 }
-
+trait CherryPick {
+    fn cherry_pick(&self, commit: &str, branch: &str) -> String;
+    
+}
 trait Merge {
     fn merge(&self, branch: &str, branch_base: &str) -> String;
 }
@@ -182,6 +185,13 @@ impl CriarConGoogleDrive for Pessoa {
 impl Depositar for Pessoa {
     fn depositar(&self, valor: f64, conta: &str, banco: &str) -> String {
         return format!("{} esta depositando {} na conta {} do banco {}", self.name, valor, conta, banco);
+    }
+    
+}
+
+impl CherryPick for Pessoa {
+    fn cherry_pick(&self, commit: &str, branch: &str) -> String {
+        return format!("{} esta fazendo cherry-pick do commit {} na branch {}", self.name, commit, branch);
     }
     
 }
@@ -291,4 +301,5 @@ fn main(){
     print!("{}",pessoa2.merge("feature", "main"));
     print!("{}",pessoa2.rebase("feature", "main"));
     print!("{}",pessoa2.amend("Atualizando commit", "main"));
+    print!("{}",pessoa2.cherry_pick("abc123", "main"));
 }
