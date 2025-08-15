@@ -84,6 +84,10 @@ trait AbrirDireitorio {
     
 }
 
+trait Rebase{
+    fn rebase(&self, branch: &str, branch_base: &str) -> String;
+}
+
 trait criarPasta {
     fn criar_pasta(&self, nome: &str) -> String;
 }
@@ -124,6 +128,12 @@ trait Merge {
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
+    }
+}
+
+impl Rebase for Pessoa {
+    fn rebase(&self, branch: &str, branch_base: &str) -> String {
+        return format!("{} esta fazendo rebase da branch {} com a branch base {}", self.name, branch, branch_base);
     }
 }
 
@@ -269,4 +279,5 @@ fn main(){
     print!("{}",pessoa2.fazer_commit("Adicionando novas funcionalidades", "main"));
     print!("{}",pessoa2.editar_commit("Corrigindo bugs", "main"));
     print!("{}",pessoa2.merge("feature", "main"));
+    print!("{}",pessoa2.rebase("feature", "main"));
 }
