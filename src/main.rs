@@ -124,6 +124,16 @@ trait Merge {
     fn merge(&self, branch: &str, branch_base: &str) -> String;
 }
 
+trait Amend {
+    fn amend(&self, mensagem: &str, branch: &str) -> String;
+}
+
+impl Amend for Pessoa {
+    fn amend(&self, mensagem: &str, branch: &str) -> String {
+        return format!("{} esta fazendo amend na branch {} com a mensagem: {}", self.name, branch, mensagem);
+    }
+    
+}
 
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
@@ -280,4 +290,5 @@ fn main(){
     print!("{}",pessoa2.editar_commit("Corrigindo bugs", "main"));
     print!("{}",pessoa2.merge("feature", "main"));
     print!("{}",pessoa2.rebase("feature", "main"));
+    print!("{}",pessoa2.amend("Atualizando commit", "main"));
 }
