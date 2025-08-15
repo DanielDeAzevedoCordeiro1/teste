@@ -84,6 +84,10 @@ trait AbrirDireitorio {
     
 }
 
+trait CriarBranch {
+    fn criar_branch(&self, nome: &str) -> String;
+}
+
 trait Rebase{
     fn rebase(&self, branch: &str, branch_base: &str) -> String;
 }
@@ -117,7 +121,6 @@ trait CriarConGoogleDrive {
 
 trait DeletarDiretorio {
     fn deletar_diretorio(&self, nome: &str) -> String;
-    
 }
 trait CherryPick {
     fn cherry_pick(&self, commit: &str, branch: &str) -> String;
@@ -141,6 +144,12 @@ impl Amend for Pessoa {
 impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
+    }
+}
+
+impl CriarBranch for Pessoa {
+    fn criar_branch(&self, nome: &str) -> String {
+        return format!("{} esta criando a branch {}", self.name, nome);
     }
 }
 
@@ -302,4 +311,5 @@ fn main(){
     print!("{}",pessoa2.rebase("feature", "main"));
     print!("{}",pessoa2.amend("Atualizando commit", "main"));
     print!("{}",pessoa2.cherry_pick("abc123", "main"));
+    print!("{}",pessoa2.criar_branch("nova_branch"));
 }
