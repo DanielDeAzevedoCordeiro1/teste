@@ -84,6 +84,10 @@ trait AbrirDireitorio {
     
 }
 
+trait EditarMensagemCommit {
+    fn editar_mensagem_commit(&self, mensagem: &str, branch: &str) -> String;
+}
+
 trait CriarBranch {
     fn criar_branch(&self, nome: &str) -> String;
 }
@@ -149,6 +153,13 @@ impl Dancar for Pessoa {
     fn dancar(&self) -> String {
         return format!("{} esta dancando", self.name);
     }
+}
+
+impl EditarMensagemCommit for Pessoa {
+    fn editar_mensagem_commit(&self, mensagem: &str, branch: &str) -> String {
+        return format!("{} esta editando a mensagem do commit na branch {} com a mensagem: {}", self.name, branch, mensagem);
+    }
+    
 }
 
 impl CriarBranch for Pessoa {
@@ -324,4 +335,5 @@ fn main(){
     print!("{}",pessoa2.cherry_pick("abc123", "main"));
     print!("{}",pessoa2.criar_branch("nova_branch"));
     print!("{}",pessoa2.trocar_branch("main", "nova_branch"));
+    print!("{}",pessoa2.editar_mensagem_commit("Atualizando mensagem do commit", "main"));
 }
