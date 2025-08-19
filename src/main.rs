@@ -83,7 +83,9 @@ trait DebitarFatura {
     fn debitar_fatura(&self, valor: f64, cartao: &str) -> String;
 }
 
-
+trait SolicitarLimiteCartao {
+    fn solicitar_limite_cartao(&self, valor: f64, cartao: &str) -> String;
+}
 
 
 trait EditarCommit {
@@ -162,6 +164,12 @@ impl SolicitarCredito for Pessoa {
 impl DebitarFatura for Pessoa {
     fn debitar_fatura(&self, valor: f64, cartao: &str) -> String {
         return format!("{} esta debitando {} na fatura do cartao {}", self.name, valor, cartao);
+    }
+}
+
+impl SolicitarLimiteCartao for Pessoa {
+    fn solicitar_limite_cartao(&self, valor: f64, cartao: &str) -> String {
+        return format!("{} esta solicitando um limite de {} no cartao {}", self.name, valor, cartao);
     }
 }
 
@@ -361,4 +369,5 @@ fn main(){
     print!("{}",pessoa2.editar_mensagem_commit("Atualizando mensagem do commit", "main"));
     print!("{}",pessoa2.solicitar_credito(5000.0, "Banco do Brasil"));
     print!("{}",pessoa2.debitar_fatura(200.0, "Cartao de Credito"));
+    print!("{}",pessoa2.solicitar_limite_cartao(3000.0, "Cartao de Credito"));
 }
