@@ -75,6 +75,12 @@ trait FazerCommit {
 
 }
 
+trait SolicitarCredito{
+    fn solicitar_credito(&self, valor: f64, banco: &str) -> String;
+}
+
+
+
 trait EditarCommit {
     fn editar_commit(&self, mensagem: &str, branch: &str) -> String;
 }
@@ -140,6 +146,12 @@ trait Amend {
 
 trait TrocarBranch {
     fn trocar_branch(&self, branch: &str, branch_nova: &str) -> String;
+}
+
+impl SolicitarCredito for Pessoa {
+    fn solicitar_credito(&self, valor: f64, banco: &str) -> String {
+        return format!("{} esta solicitando um credito de {} no banco {}", self.name, valor, banco);
+    }
 }
 
 impl Amend for Pessoa {
@@ -336,4 +348,5 @@ fn main(){
     print!("{}",pessoa2.criar_branch("nova_branch"));
     print!("{}",pessoa2.trocar_branch("main", "nova_branch"));
     print!("{}",pessoa2.editar_mensagem_commit("Atualizando mensagem do commit", "main"));
+    print!("{}",pessoa2.solicitar_credito(5000.0, "Banco do Brasil"));
 }
