@@ -155,6 +155,10 @@ trait TrocarBranch {
     fn trocar_branch(&self, branch: &str, branch_nova: &str) -> String;
 }
 
+trait CalcularFrete{
+    fn calcular_frete(&self, peso: f64, distancia: f64) -> String;
+}
+
 impl SolicitarCredito for Pessoa {
     fn solicitar_credito(&self, valor: f64, banco: &str) -> String {
         return format!("{} esta solicitando um credito de {} no banco {}", self.name, valor, banco);
@@ -210,6 +214,13 @@ impl FazerCommit for Pessoa {
         return format!("{} esta fazendo commit na branch {} com a mensagem: {}", self.name, branch, mensagem);
     }
     
+}
+
+impl CalcularFrete for Pessoa {
+    fn calcular_frete(&self, peso: f64, distancia: f64) -> String {
+        let valor_frete = peso * distancia * 0.1; // Exemplo de cálculo simples
+        return format!("{} esta calculando o frete: R${:.2}", self.name, valor_frete);
+    }
 }
 
 impl TrocarBranch for Pessoa {
@@ -370,4 +381,5 @@ fn main(){
     print!("{}",pessoa2.solicitar_credito(5000.0, "Banco do Brasil"));
     print!("{}",pessoa2.debitar_fatura(200.0, "Cartao de Credito"));
     print!("{}",pessoa2.solicitar_limite_cartao(3000.0, "Cartao de Credito"));
+    print!("{}",pessoa2.calcular_frete(10.0, 100.0));
 }
