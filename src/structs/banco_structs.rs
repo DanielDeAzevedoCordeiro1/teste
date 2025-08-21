@@ -39,3 +39,84 @@ pub trait OperacoesInvestimento {
     fn calcular_rendimento(&self) -> f64;
     fn avaliar_risco(&self) -> &str;
 }
+
+impl OperacoesSimples for ContaSimples {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.saldo >= valor {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+}
+
+impl OperacoesCorrente for ContaCorrente {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.saldo + self.limite >= valor {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn usar_limite(&mut self, valor: f64) -> bool {
+        if self.limite >= valor {
+            self.limite -= valor;
+            self.saldo += valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn transferir(&mut self, valor: f64, destino: &mut ContaCorrente) -> bool {
+        if self.sacar(valor) {
+            destino.depositar(valor);
+            true
+        } else {
+            false
+        }
+    }
+}
+
+impl OperacoesInvestimento for ContaInvestimento {
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn investir(&mut self, ativo: String, valor: f64) -> bool {
+        if self.saldo >= valor {
+            self.saldo -= valor;
+            self.carteira.push(ativo);
+            true
+        } else {
+            false
+        }
+    }
+
+    fn calcular_rendimento(&self) -> f64 {
+        self.saldo * self.rendimento_anual
+    }
+
+    fn avaliar_risco(&self) -> &str {
+        &self.risco
+    }
+}
