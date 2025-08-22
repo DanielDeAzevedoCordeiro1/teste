@@ -414,4 +414,15 @@ fn main(){
     println!("Saldo Carlos: {}", corrente2.consultar_saldo());
 
 
+    let mut investimento = ContaInvestimento {
+        titular: "Beatriz".to_string(),
+        saldo: 1000.0,
+        carteira: vec![],
+        rendimento_anual: 0.08,
+        risco: "Moderado".to_string(),
+    };
+    investimento.investir("Tesouro Direto".to_string(), 500.0);
+    println!("Saldo Investimento: {}", investimento.consultar_saldo());
+    println!("Rendimento anual: {:.2}", investimento.calcular_rendimento());
+    println!("Risco: {}", investimento.avaliar_risco());
 }
