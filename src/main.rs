@@ -396,4 +396,22 @@ fn main(){
     conta_simples.depositar(50.0);
     conta_simples.consultar_saldo();
 
+
+    let mut corrente1 = ContaCorrente {
+        titular: "Ana".to_string(),
+        saldo: 200.0,
+        limite: 100.0,
+        numero: "001".to_string(),
+    };
+    let mut corrente2 = ContaCorrente {
+        titular: "Carlos".to_string(),
+        saldo: 50.0,
+        limite: 50.0,
+        numero: "002".to_string(),
+    };
+    corrente1.transferir(100.0, &mut corrente2);
+    println!("Saldo Ana: {}", corrente1.consultar_saldo());
+    println!("Saldo Carlos: {}", corrente2.consultar_saldo());
+
+
 }
