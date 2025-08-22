@@ -344,7 +344,12 @@ impl Correr for Pessoa {
     }
 }
 
+mod structs{
+    pub mod banco_structs;
+}
 
+
+use  structs::banco_structs::*;
 fn main(){
 
 
@@ -382,4 +387,13 @@ fn main(){
     print!("{}",pessoa2.debitar_fatura(200.0, "Cartao de Credito"));
     print!("{}",pessoa2.solicitar_limite_cartao(3000.0, "Cartao de Credito"));
     print!("{}",pessoa2.calcular_frete(10.0, 100.0));
+
+    let mut conta_simples = ContaSimples{
+        titular: "João".to_string(),
+        saldo: 10.0,
+    };
+    
+    conta_simples.depositar(50.0);
+    conta_simples.consultar_saldo();
+
 }
