@@ -425,4 +425,18 @@ fn main(){
     println!("Saldo Investimento: {}", investimento.consultar_saldo());
     println!("Rendimento anual: {:.2}", investimento.calcular_rendimento());
     println!("Risco: {}", investimento.avaliar_risco());
+
+    let mut empresa = ContaEmpresarial {
+        titular: "Tech Ltda".to_string(),
+        saldo: 5000.0,
+        cnpj: "12.345.678/0001-99".to_string(),
+        funcionarios: 10,
+    };
+
+    empresa.depositar(2000.0);
+    println!("Saldo ContaEmpresarial: {}", empresa.consultar_saldo());
+
+    let pagou = empresa.pagar_funcionarios(3000.0);
+    println!("Pagou funcionários? {}", pagou);
+    println!("Saldo após pagamento: {}", empresa.consultar_saldo());
 }
