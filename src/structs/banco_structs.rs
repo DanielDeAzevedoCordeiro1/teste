@@ -135,3 +135,22 @@ impl OperacoesInvestimento for ContaInvestimento {
         &self.risco
     }
 }
+
+impl OperacoesEmpresariais for ContaEmpresarial {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn pagar_funcionarios(&mut self, valor_total: f64) -> bool {
+        if self.saldo >= valor_total {
+            self.saldo -= valor_total;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+}
