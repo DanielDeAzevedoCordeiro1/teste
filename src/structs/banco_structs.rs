@@ -208,3 +208,36 @@ impl OperacoesPoupanca for ContaPoupanca {
         saldo
     }
 }
+
+impl OperacoesDigitais for ContaDigital {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.saldo >= valor {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn pix(&mut self, valor: f64, chave_destino: &str) -> bool {
+        if self.saldo >= valor {
+            self.saldo -= valor;
+            println!("PIX de R${:.2} enviado para {}", valor, chave_destino);
+            true
+        } else {
+            false
+        }
+    }
+
+    fn calcular_cashback(&self, valor_compra: f64) -> f64 {
+        valor_compra * self.cashback_rate
+    }
+}
