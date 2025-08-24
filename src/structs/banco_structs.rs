@@ -26,6 +26,13 @@ pub struct ContaEmpresarial {
     pub funcionarios: u32,
 }
 
+pub struct ContaPoupanca {
+    pub titular: String,
+    pub saldo: f64,
+    pub rendimento_mensal: f64,
+}
+
+
 
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
