@@ -444,7 +444,7 @@ fn main(){
       let mut poupanca = ContaPoupanca {
         titular: "Lucas".to_string(),
         saldo: 500.0,
-        rendimento_mensal: 0.005, // 0.5% ao mês
+        rendimento_mensal: 0.005, 
     };
 
     poupanca.depositar(200.0);

@@ -32,7 +32,12 @@ pub struct ContaPoupanca {
     pub rendimento_mensal: f64,
 }
 
-
+pub struct ContaDigital {
+    pub titular: String,
+    pub saldo: f64,
+    pub pix_key: String,
+    pub cashback_rate: f64,
+}
 
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
