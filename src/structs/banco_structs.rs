@@ -74,6 +74,14 @@ pub trait OperacoesPoupanca {
     fn simular_rendimento(&self, meses: u32) -> f64;
 }
 
+pub trait OperacoesDigitais {
+    fn depositar(&mut self, valor: f64);
+    fn sacar(&mut self, valor: f64) -> bool;
+    fn consultar_saldo(&self) -> f64;
+    fn pix(&mut self, valor: f64, chave_destino: &str) -> bool;
+    fn calcular_cashback(&self, valor_compra: f64) -> f64;
+}
+
 impl OperacoesSimples for ContaSimples {
     fn depositar(&mut self, valor: f64) {
         self.saldo += valor;
