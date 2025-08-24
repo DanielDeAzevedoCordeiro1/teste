@@ -168,3 +168,30 @@ impl OperacoesEmpresariais for ContaEmpresarial {
         self.saldo
     }
 }
+
+impl OperacoesPoupanca for ContaPoupanca {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.saldo >= valor {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn simular_rendimento(&self, meses: u32) -> f64 {
+        let mut saldo = self.saldo;
+        for _ in 0..meses {
+            saldo += saldo * self.rendimento_mensal;
+        }
+        saldo
+    }
+}
