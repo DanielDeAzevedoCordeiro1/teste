@@ -456,4 +456,21 @@ fn main(){
 
     let simulado = poupanca.simular_rendimento(6);
     println!("Saldo simulado após 6 meses: {:.2}", simulado);
+
+     let mut digital = ContaDigital {
+        titular: "Sofia".to_string(),
+        saldo: 800.0,
+        pix_key: "sofia@email.com".to_string(),
+        cashback_rate: 0.02, 
+    };
+
+    digital.depositar(300.0);
+    println!("Saldo ContaDigital: {}", digital.consultar_saldo());
+
+    let pix_enviado = digital.pix(150.0, "maria@email.com");
+    println!("PIX enviado? {}", pix_enviado);
+    println!("Saldo após PIX: {}", digital.consultar_saldo());
+
+    let cashback = digital.calcular_cashback(500.0);
+    println!("Cashback em compra de R$500: R${:.2}", cashback);
 }
