@@ -439,4 +439,21 @@ fn main(){
     let pagou = empresa.pagar_funcionarios(3000.0);
     println!("Pagou funcionários? {}", pagou);
     println!("Saldo após pagamento: {}", empresa.consultar_saldo());
+
+
+      let mut poupanca = ContaPoupanca {
+        titular: "Lucas".to_string(),
+        saldo: 500.0,
+        rendimento_mensal: 0.005, // 0.5% ao mês
+    };
+
+    poupanca.depositar(200.0);
+    println!("Saldo ContaPoupanca: {}", poupanca.consultar_saldo());
+
+    let sacou = poupanca.sacar(100.0);
+    println!("Sacou da poupança? {}", sacou);
+    println!("Saldo após saque: {}", poupanca.consultar_saldo());
+
+    let simulado = poupanca.simular_rendimento(6);
+    println!("Saldo simulado após 6 meses: {:.2}", simulado);
 }
