@@ -473,4 +473,31 @@ fn main(){
 
     let cashback = digital.calcular_cashback(500.0);
     println!("Cashback em compra de R$500: R${:.2}", cashback);
+
+     let mut juridica1 = ContaJuridica {
+        titular: "Empresa XYZ Ltda".to_string(),
+        saldo: 10000.0,
+        cnpj: "11.222.333/0001-44".to_string(),
+        taxa_movimentacao: 0.01, // 1% de taxa
+        limite_diario: 5000.0,
+    };
+
+    let mut juridica2 = ContaJuridica {
+        titular: "Startup ABC".to_string(),
+        saldo: 2000.0,
+        cnpj: "22.333.444/0001-55".to_string(),
+        taxa_movimentacao: 0.015, // 1.5% de taxa
+        limite_diario: 3000.0,
+    };
+
+    juridica1.depositar(5000.0);
+    println!("Saldo Conta Jurídica 1: {}", juridica1.consultar_saldo());
+
+    let transferiu = juridica1.transferir_com_taxa(2000.0, &mut juridica2);
+    println!("Transferência realizada? {}", transferiu);
+    println!("Saldo após transferência - Empresa XYZ: {}", juridica1.consultar_saldo());
+    println!("Saldo após transferência - Startup ABC: {}", juridica2.consultar_saldo());
+
+    println!("{}", juridica1.gerar_extrato());
+    println!("{}", juridica2.gerar_extrato());
 }
