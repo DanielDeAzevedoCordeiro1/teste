@@ -90,6 +90,15 @@ pub trait OperacoesDigitais {
     fn calcular_cashback(&self, valor_compra: f64) -> f64;
 }
 
+pub trait OperacoesJuridicas {
+    fn depositar(&mut self, valor: f64);
+    fn sacar(&mut self, valor: f64) -> bool;
+    fn consultar_saldo(&self) -> f64;
+    fn transferir_com_taxa(&mut self, valor: f64, destino: &mut ContaJuridica) -> bool;
+    fn verificar_limite_diario(&self, valor: f64) -> bool;
+    fn gerar_extrato(&self) -> String;
+}
+
 impl OperacoesSimples for ContaSimples {
     fn depositar(&mut self, valor: f64) {
         self.saldo += valor;
