@@ -258,3 +258,41 @@ impl OperacoesDigitais for ContaDigital {
         valor_compra * self.cashback_rate
     }
 }
+
+impl OperacoesJuridicas for ContaJuridica {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        let valor_com_taxa = valor + (valor * self.taxa_movimentacao);
+        if self.saldo >= valor_com_taxa && self.verificar_limite_diario(valor) {
+            self.saldo -= valor_com_taxa;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn transferir_com_taxa(&mut self, valor: f64, destino: &mut ContaJuridica) -> bool {
+        if self.sacar(valor) {
+            destino.depositar(valor);
+            true
+        } else {
+            false
+        }
+    }
+
+    fn verificar_limite_diario(&self, valor: f64) -> bool {
+        valor <= self.limite_diario
+    }
+
+    fn gerar_extrato(&self) -> String {
+        format!("Extrato - Empresa: {} | CNPJ: {} | Saldo: R${:.2}", 
+                self.titular, self.cnpj, self.saldo)
+    }
+}
