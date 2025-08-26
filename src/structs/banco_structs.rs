@@ -39,6 +39,14 @@ pub struct ContaDigital {
     pub cashback_rate: f64,
 }
 
+pub struct ContaJuridica {
+    pub titular: String,
+    pub saldo: f64,
+    pub cnpj: String,
+    pub taxa_movimentacao: f64,
+    pub limite_diario: f64,
+}
+
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
     fn sacar(&mut self, valor: f64) -> bool;
