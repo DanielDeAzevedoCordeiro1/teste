@@ -47,6 +47,7 @@ pub struct ContaJuridica {
     pub limite_diario: f64,
 }
 
+
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
     fn sacar(&mut self, valor: f64) -> bool;
