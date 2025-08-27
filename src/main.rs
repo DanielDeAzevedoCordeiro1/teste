@@ -478,7 +478,7 @@ fn main(){
         titular: "Empresa XYZ Ltda".to_string(),
         saldo: 10000.0,
         cnpj: "11.222.333/0001-44".to_string(),
-        taxa_movimentacao: 0.01, // 1% de taxa
+        taxa_movimentacao: 0.01, 
         limite_diario: 5000.0,
     };
 
@@ -486,7 +486,7 @@ fn main(){
         titular: "Startup ABC".to_string(),
         saldo: 2000.0,
         cnpj: "22.333.444/0001-55".to_string(),
-        taxa_movimentacao: 0.015, // 1.5% de taxa
+        taxa_movimentacao: 0.015,
         limite_diario: 3000.0,
     };
 
@@ -500,4 +500,29 @@ fn main(){
 
     println!("{}", juridica1.gerar_extrato());
     println!("{}", juridica2.gerar_extrato());
+
+
+     let mut universitaria = ContaUniversitaria {
+        titular: "Pedro Silva".to_string(),
+        saldo: 500.0,
+        matricula: "2023001".to_string(),
+        universidade: "UFMG".to_string(),
+        desconto_taxa: 0.15,
+        limite_mensal: 1000.0,
+    };
+
+    universitaria.depositar(300.0);
+    println!("Saldo ContaUniversitaria: {}", universitaria.consultar_saldo());
+
+    let pagou_mensalidade = universitaria.pagar_mensalidade(400.0);
+    println!("Mensalidade paga? {}", pagou_mensalidade);
+    println!("Saldo após mensalidade: {}", universitaria.consultar_saldo());
+
+    let auxilio = universitaria.solicitar_auxilio_estudantil(200.0);
+    println!("{}", auxilio);
+    println!("Saldo após auxílio: {}", universitaria.consultar_saldo());
+
+    let pode_sacar = universitaria.verificar_limite_mensal(800.0);
+    println!("Pode sacar R$800? {}", pode_sacar);
+
 }
