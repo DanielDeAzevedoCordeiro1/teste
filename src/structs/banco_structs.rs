@@ -100,6 +100,15 @@ pub trait OperacoesJuridicas {
     fn gerar_extrato(&self) -> String;
 }
 
+pub trait OperacoesUniversitarias {
+    fn depositar(&mut self, valor: f64);
+    fn sacar(&mut self, valor: f64) -> bool;
+    fn consultar_saldo(&self) -> f64;
+    fn pagar_mensalidade(&mut self, valor: f64) -> bool;
+    fn solicitar_auxilio_estudantil(&mut self, valor: f64) -> String;
+    fn verificar_limite_mensal(&self, valor: f64) -> bool;
+}
+
 impl OperacoesSimples for ContaSimples {
     fn depositar(&mut self, valor: f64) {
         self.saldo += valor;
