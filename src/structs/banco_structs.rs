@@ -48,6 +48,15 @@ pub struct ContaJuridica {
 }
 
 
+pub struct ContaUniversitaria {
+    pub titular: String,
+    pub saldo: f64,
+    pub matricula: String,
+    pub universidade: String,
+    pub desconto_taxa: f64,
+    pub limite_mensal: f64,
+}
+
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
     fn sacar(&mut self, valor: f64) -> bool;
@@ -304,5 +313,43 @@ impl OperacoesJuridicas for ContaJuridica {
     fn gerar_extrato(&self) -> String {
         format!("Extrato - Empresa: {} | CNPJ: {} | Saldo: R${:.2}", 
                 self.titular, self.cnpj, self.saldo)
+    }
+}
+
+impl OperacoesUniversitarias for ContaUniversitaria {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.saldo >= valor && self.verificar_limite_mensal(valor) {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn pagar_mensalidade(&mut self, valor: f64) -> bool {
+        let valor_com_desconto = valor * (1.0 - self.desconto_taxa);
+        if self.saldo >= valor_com_desconto {
+            self.saldo -= valor_com_desconto;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn solicitar_auxilio_estudantil(&mut self, valor: f64) -> String {
+        self.saldo += valor;
+        format!("Auxílio de R${:.2} aprovado para {}", valor, self.titular)
+    }
+
+    fn verificar_limite_mensal(&self, valor: f64) -> bool {
+        valor <= self.limite_mensal
     }
 }
