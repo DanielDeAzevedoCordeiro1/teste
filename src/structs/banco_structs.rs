@@ -129,6 +129,17 @@ pub trait OperacoesUniversitarias {
     fn verificar_limite_mensal(&self, valor: f64) -> bool;
 }
 
+pub trait OperacoesMei {
+    fn depositar(&mut self, valor: f64);
+    fn sacar(&mut self, valor: f64) -> bool;
+    fn consultar_saldo(&self) -> f64;
+    fn verificar_limite_mei(&self) -> bool;
+    fn emitir_nota_fiscal(&mut self, valor: f64, cliente: &str) -> String;
+    fn calcular_imposto_mensal(&self) -> f64;
+    fn ted_com_taxa(&mut self, valor: f64, banco_destino: &str) -> bool;
+}
+
+
 impl OperacoesSimples for ContaSimples {
     fn depositar(&mut self, valor: f64) {
         self.saldo += valor;
