@@ -100,9 +100,6 @@ rust-book/
 - **Ownership**: Uso de `String` e referências (`&self`)
 - **Formatação de strings**: Uso de `println!`, `print!` e `format!`
 
-## Autor
-
-Daniel
 
 ## Licença
 

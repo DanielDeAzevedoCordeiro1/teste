@@ -525,4 +525,30 @@ fn main(){
     let pode_sacar = universitaria.verificar_limite_mensal(800.0);
     println!("Pode sacar R$800? {}", pode_sacar);
 
+     let mut mei = ContaMei {
+        titular: "João Empreendedor".to_string(),
+        saldo: 2000.0,
+        cnpj: "12.345.678/0001-00".to_string(),
+        faturamento_mensal: 15000.0,
+        limite_mei: 81000.0, 
+        taxa_ted: 15.0,
+    };
+
+    mei.depositar(800.0);
+    println!("Saldo ContaMei: {}", mei.consultar_saldo());
+
+    let nota = mei.emitir_nota_fiscal(500.0, "Cliente XYZ");
+    println!("{}", nota);
+
+    let dentro_limite = mei.verificar_limite_mei();
+    println!("Dentro do limite MEI? {}", dentro_limite);
+
+    let imposto = mei.calcular_imposto_mensal();
+    println!("Imposto mensal: R${:.2}", imposto);
+
+    let ted_enviado = mei.ted_com_taxa(300.0, "Banco Itaú");
+    println!("TED enviado? {}", ted_enviado);
+    println!("Saldo após TED: {}", mei.consultar_saldo());
 }
+
+
