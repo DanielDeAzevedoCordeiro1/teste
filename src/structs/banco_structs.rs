@@ -57,6 +57,17 @@ pub struct ContaUniversitaria {
     pub limite_mensal: f64,
 }
 
+
+pub struct ContaMei {
+    pub titular: String,
+    pub saldo: f64,
+    pub cnpj: String,
+    pub faturamento_mensal: f64,
+    pub limite_mei: f64,
+    pub taxa_ted: f64,
+}
+
+
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
     fn sacar(&mut self, valor: f64) -> bool;
