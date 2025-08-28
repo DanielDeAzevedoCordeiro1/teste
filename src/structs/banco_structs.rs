@@ -375,3 +375,46 @@ impl OperacoesUniversitarias for ContaUniversitaria {
         valor <= self.limite_mensal
     }
 }
+
+impl OperacoesMei for ContaMei {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+        self.faturamento_mensal += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.saldo >= valor {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn verificar_limite_mei(&self) -> bool {
+        self.faturamento_mensal <= self.limite_mei
+    }
+
+    fn emitir_nota_fiscal(&mut self, valor: f64, cliente: &str) -> String {
+        format!("Nota fiscal emitida para {} no valor de R${:.2}", cliente, valor)
+    }
+
+    fn calcular_imposto_mensal(&self) -> f64 {
+        self.faturamento_mensal * 0.06
+    }
+
+    fn ted_com_taxa(&mut self, valor: f64, banco_destino: &str) -> bool {
+        let valor_com_taxa = valor + (valor * self.taxa_ted);
+        if self.saldo >= valor_com_taxa {
+            self.saldo -= valor_com_taxa;
+            println!("TED de R${:.2} enviado para {} com taxa de R${:.2}", valor, banco_destino, valor * self.taxa_ted);
+            true
+        } else {
+            false
+        }
+    }
+}
