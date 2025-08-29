@@ -148,6 +148,17 @@ pub trait OperacoesMei {
 }
 
 
+pub trait OperacoesSalario {
+    fn depositar(&mut self, valor: f64);
+    fn sacar(&mut self, valor: f64) -> bool;
+    fn consultar_saldo(&self) -> f64;
+    fn receber_salario(&mut self) -> String;
+    fn calcular_desconto_inss(&self) -> f64;
+    fn gerar_holerite(&self) -> String;
+    fn solicitar_adiantamento(&mut self, percentual: f64) -> bool;
+}
+
+
 impl OperacoesSimples for ContaSimples {
     fn depositar(&mut self, valor: f64) {
         self.saldo += valor;
