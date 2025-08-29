@@ -437,3 +437,49 @@ impl OperacoesMei for ContaMei {
         }
     }
 }
+
+impl OperacoesSalario for ContaSalario {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.saldo >= valor {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn receber_salario(&mut self) -> String {
+        let salario_liquido = self.salario_mensal - self.calcular_desconto_inss();
+        self.saldo += salario_liquido;
+        format!("Salário de R${:.2} creditado na conta", salario_liquido)
+    }
+
+    fn calcular_desconto_inss(&self) -> f64 {
+        self.salario_mensal * self.desconto_inss
+    }
+
+    fn gerar_holerite(&self) -> String {
+        let inss = self.calcular_desconto_inss();
+        let liquido = self.salario_mensal - inss;
+        format!("Holerite - Empresa: {} | Salário Bruto: R${:.2} | INSS: R${:.2} | Líquido: R${:.2}", 
+                self.empresa, self.salario_mensal, inss, liquido)
+    }
+
+    fn solicitar_adiantamento(&mut self, percentual: f64) -> bool {
+        if percentual <= 0.40 {
+            let valor_adiantamento = self.salario_mensal * percentual;
+            self.saldo += valor_adiantamento;
+            true
+        } else {
+            false
+        }
+    }
+}
