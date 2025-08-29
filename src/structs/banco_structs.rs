@@ -67,6 +67,14 @@ pub struct ContaMei {
     pub taxa_ted: f64,
 }
 
+pub struct ContaSalario {
+    pub titular: String,
+    pub saldo: f64,
+    pub empresa: String,
+    pub salario_mensal: f64,
+    pub desconto_inss: f64,
+}
+
 
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
