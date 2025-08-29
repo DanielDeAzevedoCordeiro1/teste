@@ -549,6 +549,26 @@ fn main(){
     let ted_enviado = mei.ted_com_taxa(300.0, "Banco Itaú");
     println!("TED enviado? {}", ted_enviado);
     println!("Saldo após TED: {}", mei.consultar_saldo());
+
+
+      let mut salario = ContaSalario {
+        titular: "Carlos Trabalhador".to_string(),
+        saldo: 200.0,
+        empresa: "Empresa ABC Ltda".to_string(),
+        salario_mensal: 3000.0,
+        desconto_inss: 0.11, 
+    };
+
+    let credito_salario = salario.receber_salario();
+    println!("{}", credito_salario);
+    println!("Saldo após salário: {}", salario.consultar_saldo());
+
+    let holerite = salario.gerar_holerite();
+    println!("{}", holerite);
+
+    let adiantamento = salario.solicitar_adiantamento(0.30); 
+    println!("Adiantamento aprovado? {}", adiantamento);
+    println!("Saldo após adiantamento: {}", salario.consultar_saldo());
 }
 
 
