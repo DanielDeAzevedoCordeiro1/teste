@@ -502,3 +502,47 @@ impl OperacoesSalario for ContaSalario {
         }
     }
 }
+
+impl OperacoesEstudantis for ContaEstudantil {
+    fn depositar(&mut self, valor: f64) {
+        self.saldo += valor;
+    }
+
+    fn sacar(&mut self, valor: f64) -> bool {
+        if self.idade < 18 && valor > self.limite_diario {
+            false 
+        } else if self.saldo >= valor {
+            self.saldo -= valor;
+            true
+        } else {
+            false
+        }
+    }
+
+    fn consultar_saldo(&self) -> f64 {
+        self.saldo
+    }
+
+    fn solicitar_autorizacao_responsavel(&self, valor: f64) -> String {
+        if self.idade < 18 {
+            format!("Autorização solicitada para {} sacar R${:.2}. Responsável: {}", 
+                    self.titular, valor, self.nome_responsavel)
+        } else {
+            "Maior de idade, autorização não necessária".to_string()
+        }
+    }
+
+    fn ativar_modo_poupanca(&mut self) -> String {
+        self.taxa_zero = true;
+        format!("Modo poupança ativado para {}. Taxa zero em vigor!", self.titular)
+    }
+
+    fn consultar_limite_idade(&self) -> bool {
+        self.idade >= 16 
+    }
+
+    fn receber_mesada(&mut self, valor: f64) -> String {
+        self.saldo += valor;
+        format!("Mesada de R${:.2} creditada na conta de {}", valor, self.titular)
+    }
+}
