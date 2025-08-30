@@ -167,6 +167,16 @@ pub trait OperacoesSalario {
     fn solicitar_adiantamento(&mut self, percentual: f64) -> bool;
 }
 
+pub trait OperacoesEstudantis {
+    fn depositar(&mut self, valor: f64);
+    fn sacar(&mut self, valor: f64) -> bool;
+    fn consultar_saldo(&self) -> f64;
+    fn solicitar_autorizacao_responsavel(&self, valor: f64) -> String;
+    fn ativar_modo_poupanca(&mut self) -> String;
+    fn consultar_limite_idade(&self) -> bool;
+    fn receber_mesada(&mut self, valor: f64) -> String;
+}
+
 
 impl OperacoesSimples for ContaSimples {
     fn depositar(&mut self, valor: f64) {
