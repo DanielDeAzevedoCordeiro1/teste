@@ -75,6 +75,15 @@ pub struct ContaSalario {
     pub desconto_inss: f64,
 }
 
+pub struct ContaEstudantil {
+    pub titular: String,
+    pub saldo: f64,
+    pub idade: u8,
+    pub nome_responsavel: String,
+    pub limite_diario: f64,
+    pub taxa_zero: bool,
+}
+
 
 pub trait OperacoesSimples {
     fn depositar(&mut self, valor: f64);
