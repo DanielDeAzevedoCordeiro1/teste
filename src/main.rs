@@ -569,6 +569,31 @@ fn main(){
     let adiantamento = salario.solicitar_adiantamento(0.30); 
     println!("Adiantamento aprovado? {}", adiantamento);
     println!("Saldo após adiantamento: {}", salario.consultar_saldo());
+
+      let mut estudantil = ContaEstudantil {
+        titular: "Ana Estudante".to_string(),
+        saldo: 100.0,
+        idade: 17,
+        nome_responsavel: "Maria Silva".to_string(),
+        limite_diario: 50.0,
+        taxa_zero: false,
+    };
+
+    let mesada = estudantil.receber_mesada(200.0);
+    println!("{}", mesada);
+    println!("Saldo ContaEstudantil: {}", estudantil.consultar_saldo());
+
+    let pode_ter_conta = estudantil.consultar_limite_idade();
+    println!("Pode ter conta? {}", pode_ter_conta);
+
+    let tentativa_saque = estudantil.sacar(80.0); 
+    println!("Saque de R$80 aprovado? {}", tentativa_saque);
+
+    let autorizacao = estudantil.solicitar_autorizacao_responsavel(80.0);
+    println!("{}", autorizacao);
+
+    let modo_poupanca = estudantil.ativar_modo_poupanca();
+    println!("{}", modo_poupanca);
 }
 
 
